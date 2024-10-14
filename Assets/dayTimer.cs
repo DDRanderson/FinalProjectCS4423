@@ -11,7 +11,6 @@ public class dayTimer : MonoBehaviour
 
     public int clockShownTime = 0;
  
-    // Start is called before the first frame update
     void Start()
     {
         //clockText.text = DateTime.Now.ToString();
@@ -19,7 +18,6 @@ public class dayTimer : MonoBehaviour
         StartCoroutine(TimerCouroutine());
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -27,12 +25,12 @@ public class dayTimer : MonoBehaviour
 
     IEnumerator TimerCouroutine()
     {
-        int x = 0;
-        yield return new WaitForSeconds(2);
-        updateClockText();
-        Debug.Log("clockShownTime: " + clockShownTime);
-        x++;
-        Debug.Log("Coroutine timer: " + x);
+        while(true)
+        {
+            yield return new WaitForSeconds(1);
+            updateClockText();
+        }
+
     }
 
     public void updateClockText()
