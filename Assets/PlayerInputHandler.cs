@@ -15,7 +15,7 @@ public class PlayerInputHandler : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    // FixedUpdate is called once every 0.02 seconds
     void FixedUpdate()
     {
         Vector3 movement = new Vector3(0,0,0);
