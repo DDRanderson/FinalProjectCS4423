@@ -7,6 +7,9 @@ using TMPro;
 public class TimeManager : MonoBehaviour
 {
 
+    public delegate void oneSecond();
+    public event oneSecond oneSecondEvent; 
+
     [Header("Text Fields")]
     [SerializeField] TMP_Text clockText;
     [SerializeField] TMP_Text moneyText;
@@ -43,14 +46,20 @@ public class TimeManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             realTimer++;
+            oneSecondTrigger();
             //each 7 real seconds = 15 game minutes
             //each day is 252 seconds (9am to 6pm)
             if (realTimer % 7 == 0){
                 gameMinutes +=15;
-                updateClockText();
+                updateClockText(); 
             }
         }
+    }
 
+    void oneSecondTrigger(){
+        if (oneSecondEvent != null){
+            oneSecondEvent();
+        }
     }
 
     public void updateClockText()
