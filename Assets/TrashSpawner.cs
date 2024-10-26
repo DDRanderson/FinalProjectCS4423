@@ -15,7 +15,7 @@ public class TrashSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         PopulateLocationsList();
+        PopulateLocationsList();
 
         //subscribe to oneSecondTrigger event
         FindObjectOfType<TimeManager>().oneSecondEvent += SpawnObjectRandomly;

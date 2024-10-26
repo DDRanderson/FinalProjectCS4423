@@ -7,8 +7,9 @@ using TMPro;
 public class TimeManager : MonoBehaviour
 {
 
-    public delegate void oneSecond();
-    public event oneSecond oneSecondEvent; 
+    public delegate void timeEvents();
+    public event timeEvents oneSecondEvent;
+    public event timeEvents endOfDayEvent; 
 
     [Header("Text Fields")]
     [SerializeField] TMP_Text clockText;
@@ -36,7 +37,7 @@ public class TimeManager : MonoBehaviour
     void Start()
     {
         clockText.text = day + " - " + clockStartShownTime;
-        moneyText.text = "$" + currentMoney;
+        //moneyText.text = "$" + currentMoney;
         StartCoroutine(TimerCouroutine());
     }
 
@@ -62,6 +63,12 @@ public class TimeManager : MonoBehaviour
         }
     }
 
+    void endOfDayTrigger(){
+        if (endOfDayEvent != null){
+            endOfDayEvent();
+        }
+    }
+
     public void updateClockText()
     {
         //60 minutes = 1 hour
@@ -74,7 +81,8 @@ public class TimeManager : MonoBehaviour
             gameHours = 1;
             meridiem = "PM";
         }
-        //reset clock at end of the day, move to next Day of the Week, subtract daily expenses from Money
+        //END OF DAY
+        //reset clock, move to next Day of the Week, call endOfDay event trigger
         if(realTimer % 252 == 0){
             realTimer = 0;
             gameMinutes = 0;
@@ -85,8 +93,8 @@ public class TimeManager : MonoBehaviour
                 iDay = 0;
             }
             day = Days[iDay];
-
-            updateMoneyText();
+            endOfDayTrigger();
+            //updateMoneyText();
 
         }
         clockText.text = day + " - " + gameHours.ToString() + ":" + gameMinutes.ToString("00") + " " + meridiem;
