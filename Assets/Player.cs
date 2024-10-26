@@ -23,10 +23,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && tenant.isInOffice == true){
+        /*if (Input.GetKeyDown(KeyCode.R) && tenant.isInOffice == true){
             Debug.Log("Money Collected");
             CollectRentTrigger();
-        }
+        }*/
 
     }
 
@@ -38,6 +38,14 @@ public class Player : MonoBehaviour
     public void CollectRentTrigger(){
         if (collectRentEvent != null){
             collectRentEvent();
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collision){
+        if(collision.CompareTag("BehindDesk")){
+            if(Input.GetKey(KeyCode.R) && tenant.isInOffice == true){
+                CollectRentTrigger();
+            }
         }
     }
 }

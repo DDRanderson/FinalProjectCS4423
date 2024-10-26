@@ -1,25 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TrashSpawner : MonoBehaviour
 {
 
-    public GameObject trash;
+    public Trash trash;
     public float radius = 1;
     public int percentChance = 30;
 
     //an array of Vector2D locations to move to 
     List<Vector2> locationsList = new List<Vector2>(); 
 
-    // Start is called before the first frame update
+
     void Start()
     {
         PopulateLocationsList();
-
+        
         //subscribe to oneSecondTrigger event
         FindObjectOfType<TimeManager>().oneSecondEvent += SpawnObjectRandomly;
-       
+        //FindObjectOfType<Trash>().TrashDestroyed += UpdateTrashCount;
     }
 
     // Update is called once per frame
@@ -43,7 +44,7 @@ public class TrashSpawner : MonoBehaviour
 
         //percentage chance of a trash spawning
         int rand = Random.Range(0,100);
-        Debug.Log("Random Trash Spawn Number: " + rand);
+        //Debug.Log("Random Trash Spawn Number: " + rand);
         
         if(rand <= percentChance){
             Vector3 randomPos = Random.insideUnitCircle * radius;
@@ -63,6 +64,11 @@ public class TrashSpawner : MonoBehaviour
             locationsList.Add(new Vector2(i,4.25f));
             locationsList.Add(new Vector2(i,-4));
         }
+    }
+
+    void UpdateTrashCount(){
+        
+        
     }
 
 }

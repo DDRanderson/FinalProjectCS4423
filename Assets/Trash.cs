@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Trash : MonoBehaviour
 {
+    public delegate void trashEvents();
+    public event trashEvents TrashDestroyed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,12 @@ public class Trash : MonoBehaviour
         if(collision.CompareTag("Player")){
             if(Input.GetKey(KeyCode.E)){
                 Destroy(gameObject);
+                //TrashDestroyedTrigger();
             }
         }
+    }
+
+    void TrashDestroyedTrigger(){
+        TrashDestroyed?.Invoke();
     }
 }

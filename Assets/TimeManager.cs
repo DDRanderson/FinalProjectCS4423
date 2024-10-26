@@ -13,7 +13,7 @@ public class TimeManager : MonoBehaviour
 
     [Header("Text Fields")]
     [SerializeField] TMP_Text clockText;
-    [SerializeField] TMP_Text moneyText;
+
 
     [Header("Real Timer")]
     public int realTimer = 0;
@@ -25,19 +25,15 @@ public class TimeManager : MonoBehaviour
     public string meridiem = "AM";
 
     [Header("Days of the Week")]
-    static List<String> Days = new List<String>{"Mon","Tue","Wed","Thu","Fri"};
+    static List<string> Days = new List<string>{"Mon","Tue","Wed","Thu","Fri"};
     public static int iDay = 0;
     string day = Days[iDay];
 
-    [Header("Money Details")]
-    public int currentMoney = 300;
-    public int dailyExpenses = 100;
 
 
     void Start()
     {
         clockText.text = day + " - " + clockStartShownTime;
-        //moneyText.text = "$" + currentMoney;
         StartCoroutine(TimerCouroutine());
     }
 
@@ -50,6 +46,7 @@ public class TimeManager : MonoBehaviour
             oneSecondTrigger();
             //each 7 real seconds = 15 game minutes
             //each day is 252 seconds (9am to 6pm)
+            //can change the modulo number to increase/decrease how often 15 game minutes pass
             if (realTimer % 7 == 0){
                 gameMinutes +=15;
                 updateClockText(); 
@@ -83,7 +80,7 @@ public class TimeManager : MonoBehaviour
         }
         //END OF DAY
         //reset clock, move to next Day of the Week, call endOfDay event trigger
-        if(realTimer % 252 == 0){
+        if(gameHours == 6 && gameMinutes == 0){
             realTimer = 0;
             gameMinutes = 0;
             gameHours = 9;
@@ -94,15 +91,9 @@ public class TimeManager : MonoBehaviour
             }
             day = Days[iDay];
             endOfDayTrigger();
-            //updateMoneyText();
 
         }
         clockText.text = day + " - " + gameHours.ToString() + ":" + gameMinutes.ToString("00") + " " + meridiem;
     }
 
-    public void updateMoneyText()
-    {
-        currentMoney -= dailyExpenses;
-        moneyText.text = "$" + currentMoney;
-    }
 }

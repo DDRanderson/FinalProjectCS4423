@@ -37,7 +37,9 @@ public class Tenant : MonoBehaviour
         while(/*transform.position != targetPosition*/ true){
             //yield return null;
             //transform.localPosition += new Vector3(0,-1,0);
-            yield return new WaitForSeconds(5);
+
+            //randomly move to office once every 10-20 seconds
+            yield return new WaitForSeconds(Random.Range(10,20));
             transform.position = targetPosition;
         }
          
