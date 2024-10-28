@@ -14,7 +14,8 @@ public class MoneyManager : MonoBehaviour
 
     [Header("Money Values")]
     public int currentMoney = 300;
-    public int dailyExpenses = 100;
+    public int dailyExpenses = 120;
+    public int maxRentMoney = 20;
 
     public Trash[] trashList;
 
@@ -50,10 +51,13 @@ public class MoneyManager : MonoBehaviour
         }
         */
         trashList = FindObjectsByType<Trash>(FindObjectsSortMode.None);
-        
-        Debug.Log("Trash Count:" + (trashList.Length - 1));
+        Debug.Log("Trash Count:" + trashList.Length);
 
-        currentMoney += 20;
+        //check to make sure you aren't paying money to tenant if there is too much trash 
+        if (maxRentMoney > (trashList.Length * 2)){
+            currentMoney += maxRentMoney - (trashList.Length * 2);
+        }
+
         try{
             moneyText.text = "$" + currentMoney;
         }

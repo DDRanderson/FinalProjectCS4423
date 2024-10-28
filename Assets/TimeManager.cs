@@ -47,7 +47,8 @@ public class TimeManager : MonoBehaviour
             //each 7 real seconds = 15 game minutes
             //each day is 252 seconds (9am to 6pm)
             //can change the modulo number to increase/decrease how often 15 game minutes pass
-            if (realTimer % 7 == 0){
+            //for testing basic gameplay loop, reduced to 2 seconds per 15 game minutes
+            if (realTimer % 2 == 0){
                 gameMinutes +=15;
                 updateClockText(); 
             }
@@ -74,9 +75,12 @@ public class TimeManager : MonoBehaviour
             gameMinutes = 0;
         }
         //switch from AM to PM
+        if(gameHours % 12 == 0){
+            meridiem = "PM";
+        }
+        //switch from military time to 12-hr time
         if(gameHours % 13 == 0){
             gameHours = 1;
-            meridiem = "PM";
         }
         //END OF DAY
         //reset clock, move to next Day of the Week, call endOfDay event trigger
