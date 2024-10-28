@@ -10,6 +10,7 @@ public class MoneyManager : MonoBehaviour
 {
 
     [SerializeField] TMP_Text moneyText;
+    
 
 
     [Header("Money Values")]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TimeManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class TimeManager : MonoBehaviour
     public delegate void timeEvents();
     public event timeEvents oneSecondEvent;
     public event timeEvents endOfDayEvent; 
+    public event timeEvents endOfWeekEvent;
 
     [Header("Text Fields")]
     [SerializeField] TMP_Text clockText;
@@ -55,6 +57,9 @@ public class TimeManager : MonoBehaviour
         }
     }
 
+    /****************/
+    /*EVENT TRIGGERS*/
+    /****************/
     void oneSecondTrigger(){
         if (oneSecondEvent != null){
             oneSecondEvent();
@@ -66,6 +71,12 @@ public class TimeManager : MonoBehaviour
             endOfDayEvent();
         }
     }
+
+    void endOfWeekTrigger(){
+        endOfWeekEvent?.Invoke();
+    }
+
+
 
     public void updateClockText()
     {
@@ -92,6 +103,10 @@ public class TimeManager : MonoBehaviour
             iDay++;
             if (iDay >= Days.Count){
                 iDay = 0;
+                endOfDayTrigger();
+                endOfWeekTrigger();
+                SceneManager.LoadScene("ResultsScreen");
+                return;
             }
             day = Days[iDay];
             endOfDayTrigger();
