@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision){
         if(collision.CompareTag("BehindDesk")){
-            if(Input.GetKey(KeyCode.R) && tenant.isInOffice == true){
+            if(Input.GetKeyDown(KeyCode.R) && tenant.isInOffice == true){
                 CollectRentTrigger();
             }
         }

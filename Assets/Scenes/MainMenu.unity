@@ -181,16 +181,17 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'How To Play:
 
-    Use (AWSD) to move around
 
-    Collect Rent with (R)
-    from Tenants when they come to the Office
+    Use (Arrow Keys) to move around
 
-    You must be standing behind the
-    computer to collect rent
+    Collect Rent with
+    (R) from Tenants when they come to the Office
 
-    Pick up Trash with (E) as it appears around the
-    facility
+    You must be standing behind
+    the computer to collect rent
+
+    Pick up Trash with (T) as it appears around
+    the facility
 
     You must be standing on trash to be able to collect it
 
