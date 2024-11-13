@@ -8,8 +8,8 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     public delegate void PlayerEvents();
     public event PlayerEvents collectRentEvent;
-
-    [SerializeField] Tenant tenant;
+	
+	public bool isBehindDesk = false;
 
     [Header("Movement")]
     [SerializeField] float speed = 3.5f;
@@ -41,11 +41,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D collision){
+    void OnTriggerEnter2D(Collider2D collision){
         if(collision.CompareTag("BehindDesk")){
-            if(Input.GetKeyDown(KeyCode.R) && tenant.isInOffice == true){
-                CollectRentTrigger();
-            }
+			isBehindDesk = true;
+        }
+    }
+	
+	void OnTriggerExit2D(Collider2D collision){
+        if(collision.CompareTag("BehindDesk")){
+			isBehindDesk = false;
         }
     }
 }

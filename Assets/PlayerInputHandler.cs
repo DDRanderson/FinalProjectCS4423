@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] Player player;
-
+    [SerializeField] Tenant tenant;
 
     
     // Start is called before the first frame update
@@ -14,6 +14,17 @@ public class PlayerInputHandler : MonoBehaviour
     {
         
     }
+
+	void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.R))
+		{
+			if (tenant.isInOffice && player.isBehindDesk)
+			{
+				player.CollectRentTrigger();
+			}
+		}
+	}
 
     // FixedUpdate is called once every 0.02 seconds
     void FixedUpdate()

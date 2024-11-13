@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 420417836}
+  tenant: {fileID: 649230330}
 --- !u!4 &188698890
 Transform:
   m_ObjectHideFlags: 0
@@ -528,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dacbdb1c2bdcf4ca32be522ae4819e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tenant: {fileID: 649230330}
+  isBehindDesk: 0
   speed: 3.5
 --- !u!70 &420417837
 CapsuleCollider2D:
@@ -849,7 +850,7 @@ SpriteRenderer:
   m_SortingLayerID: -1519905133
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3b146cc213b75e44af0d0a7731ef4cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -870,8 +871,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.33, y: 6, z: 0}
-  m_LocalScale: {x: 0.74715364, y: 0.5011461, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
