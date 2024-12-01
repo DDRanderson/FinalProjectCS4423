@@ -10,8 +10,13 @@ public class Tenant : MonoBehaviour
     public bool isInOffice = false;
     public bool isMovingToOffice = false;
     public bool isLeavingOffice = false;
+    public SpriteRenderer spriteRenderer;
+    public Sprite[] spriteArray;
+    public int currSpriteIndex;
+    public int newSpriteIndex;
+    
 
-    int moveToOfficeCountdown;
+    public int moveToOfficeCountdown;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +26,16 @@ public class Tenant : MonoBehaviour
 
         FindObjectOfType<TimeManager>().oneSecondEvent += OneSecondListenEvent;
 
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        currSpriteIndex = -1;
+        newSpriteIndex = 0;
+
         moveToOfficeCountdown = Random.Range(10,20);
 
         startingPosition = new Vector3(-8.33f,6,0);
         targetPosition = new Vector3(-8.33f,-2.5f,0);
         transform.position = startingPosition;
-        //StartCoroutine(MoveCheck());
+
     }
 
     // Update is called once per frame
@@ -43,24 +52,6 @@ public class Tenant : MonoBehaviour
 
     }
 
-    IEnumerator MoveCheck(){
-        
-        while(/*transform.position != targetPosition*/ true){
-            //yield return null;
-            //transform.localPosition += new Vector3(0,-1,0);
-
-            //randomly move to office once every number of seconds in random range
-            /*  TODO: wait timer keeps retriggering, even after
-                tenant moves to office. need to set it to where the 
-                timer waits to start counting down again until after
-                rent is collected. maybe call the oneSecondTimer trigger
-                event to start counting up internally?
-            */
-            yield return new WaitForSeconds(Random.Range(10,20));
-            MoveToOffice();
-        }
-         
-    }
 
     void MoveToOffice(){
         transform.position = new Vector2(transform.position.x, transform.position.y - Time.deltaTime);
@@ -85,8 +76,10 @@ public class Tenant : MonoBehaviour
             moveToOfficeCountdown--;
         }
 
+        //trigger for moving to the office
         if(moveToOfficeCountdown == 0){
             isMovingToOffice = true;
+            ChangeSprite();
             moveToOfficeCountdown = -1;
         }        
     }
@@ -94,5 +87,26 @@ public class Tenant : MonoBehaviour
     void RentCollected(){
         isLeavingOffice = true;
         isInOffice = false;
+    }
+
+    void ChangeSprite(){
+        //randomly changes to a new tenant sprite, checks to ensure non-consecutive tenant sprites are chosen
+        newSpriteIndex = Random.Range(0,spriteArray.Length);
+        if (currSpriteIndex == -1){
+            currSpriteIndex = newSpriteIndex;
+            spriteRenderer.sprite = spriteArray[newSpriteIndex]; 
+        }
+        else if (newSpriteIndex == currSpriteIndex){
+            while (newSpriteIndex == currSpriteIndex){
+                newSpriteIndex = Random.Range(0,spriteArray.Length);
+            }
+            spriteRenderer.sprite = spriteArray[newSpriteIndex];
+            currSpriteIndex = newSpriteIndex;
+        }
+        else {
+            spriteRenderer.sprite = spriteArray[newSpriteIndex];
+        }
+
+        
     }
 }
