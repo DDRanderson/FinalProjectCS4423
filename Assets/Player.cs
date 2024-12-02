@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     public delegate void PlayerEvents();
     public event PlayerEvents collectRentEvent;
+    public event PlayerEvents collectTrashEvent;
 	
 	public bool isBehindDesk = false;
 
@@ -23,10 +24,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.R) && tenant.isInOffice == true){
-            Debug.Log("Money Collected");
-            CollectRentTrigger();
-        }*/
 
     }
 
@@ -41,6 +38,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void CollectTrashTrigger(){
+        collectTrashEvent?.Invoke();
+    }
+
     void OnTriggerEnter2D(Collider2D collision){
         if(collision.CompareTag("BehindDesk")){
 			isBehindDesk = true;
@@ -50,6 +51,16 @@ public class Player : MonoBehaviour
 	void OnTriggerExit2D(Collider2D collision){
         if(collision.CompareTag("BehindDesk")){
 			isBehindDesk = false;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collision){
+        if(collision.CompareTag("Trash")){
+            if(Input.GetKey(KeyCode.T)){
+                //TrashDestroyedTrigger();
+                Destroy(collision.gameObject);
+                CollectTrashTrigger();
+            }
         }
     }
 }

@@ -44,11 +44,12 @@ public class MoneyManager : MonoBehaviour
     }
 
     void CollectedRent(){
-        //find how much trash exists on property
+        // find how much trash exists on property
         trashList = FindObjectsByType<Trash>(FindObjectsSortMode.None);
         //Debug.Log("Trash Count:" + trashList.Length);
 
-        //check to make sure you aren't paying money to tenant if there is too much trash 
+        // check to make sure you aren't paying money to tenant if there is too much trash 
+        // -$2 per trash, 10 trash = $0 collected 
         if (maxRentMoney > (trashList.Length * 2)){
             currentMoney += maxRentMoney - (trashList.Length * 2);
         }

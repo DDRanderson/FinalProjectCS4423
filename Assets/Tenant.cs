@@ -59,6 +59,7 @@ public class Tenant : MonoBehaviour
             transform.position = new Vector2(transform.position.x, targetPosition.y);
             isMovingToOffice = false;
             isInOffice = true;
+            /* TODO: play voice clip for when tenant is ready to pay */
         }
     }
 
@@ -87,6 +88,7 @@ public class Tenant : MonoBehaviour
     void RentCollected(){
         isLeavingOffice = true;
         isInOffice = false;
+        /* TODO: play voice clip of specific tenant that rent is collected from */
     }
 
     void ChangeSprite(){
