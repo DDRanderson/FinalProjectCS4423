@@ -8,11 +8,12 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] Tenant tenant;
 
+    public bool isPaused;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        isPaused = false;
     }
 
 	void Update()
@@ -24,6 +25,22 @@ public class PlayerInputHandler : MonoBehaviour
 				player.CollectRentTrigger();
 			}
 		}
+
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            if (!isPaused){
+                PauseGame();
+                isPaused = true;
+                return;
+            }
+
+            if (isPaused){
+                ResumeGame();
+                isPaused = false;
+                return;
+            }
+        }
+
+
 	}
 
     // FixedUpdate is called once every 0.02 seconds
@@ -48,6 +65,14 @@ public class PlayerInputHandler : MonoBehaviour
         }
         player.Movement(movement);
 
+    }
+
+    void PauseGame(){
+        Time.timeScale = 0;
+    }
+
+    void ResumeGame(){
+        Time.timeScale = 1;
     }
 
 }
