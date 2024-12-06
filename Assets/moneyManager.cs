@@ -10,6 +10,7 @@ public class MoneyManager : MonoBehaviour
 {
 
     [SerializeField] TMP_Text moneyText;
+    [SerializeField] TMP_Text moneyResultText;
     
 
 
@@ -17,6 +18,7 @@ public class MoneyManager : MonoBehaviour
     public int currentMoney = 300;
     public int dailyExpenses = 120;
     public int maxRentMoney = 20;
+    public int moneyResult = 0;
 
     public Trash[] trashList;
 

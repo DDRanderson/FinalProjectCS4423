@@ -16,7 +16,7 @@ public class SFXPlayer : MonoBehaviour
     {
         FindObjectOfType<Player>().collectTrashEvent += PlayRandomTrashSound;
         FindObjectOfType<Player>().collectRentEvent += PlayCashRegisterSound;
-        trashClipIndex = Random.Range(0,trashAudioClipArray.Length);
+        trashClipIndex = Random.Range(0,trashAudioClipArray.Length-1);
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class SFXPlayer : MonoBehaviour
         if (trashClipIndex < trashAudioClipArray.Length && trashClipIndex >= 0)
         {
             effectSource.PlayOneShot(trashAudioClipArray[trashClipIndex]);
-            trashClipIndex = Random.Range(0,trashAudioClipArray.Length);
+            trashClipIndex = Random.Range(0,trashAudioClipArray.Length-1);
         }
     }
 

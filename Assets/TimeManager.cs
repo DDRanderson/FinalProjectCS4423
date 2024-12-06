@@ -115,4 +115,8 @@ public class TimeManager : MonoBehaviour
         clockText.text = day + " - " + gameHours.ToString() + ":" + gameMinutes.ToString("00") + " " + meridiem;
     }
 
+    public string getDayOfTheWeek(){
+        return Days[iDay];
+    }
+
 }
