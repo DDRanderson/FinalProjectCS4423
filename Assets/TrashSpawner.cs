@@ -8,7 +8,7 @@ public class TrashSpawner : MonoBehaviour
 
     public Trash trash;
     public float radius = 1;
-    public int percentChance = 25;
+    public int percentChance = 10;
 
     //an array of Vector2D locations to move to 
     List<Vector2> locationsList = new List<Vector2>(); 

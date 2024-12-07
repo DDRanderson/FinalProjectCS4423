@@ -639,7 +639,12 @@ MonoBehaviour:
     End of the Day, Expenses are subtracted from your Money
 
     Keep from going
-    Bankrupt by the end of the week to win'
+    Bankrupt by the end of the week to win
+
+
+    You can spend $3 to buy/drink coffee
+    in front of the Coffee vending machine in the corner of the office. This will
+    temporarily increase your movement speed'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -666,7 +671,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.9
+  m_fontSize: 25.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2619,12 +2624,14 @@ MonoBehaviour:
   m_text: 'Controls:
 
 
-    Move -Arrow Keys
+    Move - Arrow Keys
 
     Collect Rent - R
 
     Pick up Trash
     - T
+
+    C - Drink Coffee
 
     Escape - Pause'
   m_isRightToLeft: 0

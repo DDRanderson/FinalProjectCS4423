@@ -50,7 +50,7 @@ public class TimeManager : MonoBehaviour
             //each day is 252 seconds (9am to 6pm)
             //can change the modulo number to increase/decrease how often 15 game minutes pass
             //for testing basic gameplay loop, reduced to 2 seconds per 15 game minutes
-            if (realTimer % 2 == 0){
+            if (realTimer % 4 == 0){
                 gameMinutes +=15;
                 updateClockText(); 
             }

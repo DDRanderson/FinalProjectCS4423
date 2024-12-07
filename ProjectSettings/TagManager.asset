@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BehindDesk
   - Trash
+  - CoffeeMachine
   layers:
   - Default
   - TransparentFX

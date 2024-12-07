@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+
 //using System.Numerics;
 using UnityEngine;
 
@@ -7,6 +9,7 @@ public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] Player player;
     [SerializeField] Tenant tenant;
+    [SerializeField] TMP_Text pausedText;
 
     public bool isPaused;
     
@@ -14,6 +17,7 @@ public class PlayerInputHandler : MonoBehaviour
     void Start()
     {
         isPaused = false;
+        pausedText.color = new Color(0,0,0,0);
     }
 
 	void Update()
@@ -26,16 +30,22 @@ public class PlayerInputHandler : MonoBehaviour
 			}
 		}
 
+        if(Input.GetKeyDown(KeyCode.C)){
+            player.DrinkCoffee();
+        }
+
         if(Input.GetKeyDown(KeyCode.Escape)){
             if (!isPaused){
                 PauseGame();
                 isPaused = true;
+                pausedText.color = new Color(1,1,1,1);
                 return;
             }
 
             if (isPaused){
                 ResumeGame();
                 isPaused = false;
+                pausedText.color = new Color(0,0,0,0);
                 return;
             }
         }

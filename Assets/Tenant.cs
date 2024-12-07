@@ -14,6 +14,8 @@ public class Tenant : MonoBehaviour
     public Sprite[] spriteArray;
     public int currSpriteIndex;
     public int newSpriteIndex;
+    public int moveMin = 8;
+    public int moveMax = 15;
     
 
     public int moveToOfficeCountdown;
@@ -30,7 +32,7 @@ public class Tenant : MonoBehaviour
         currSpriteIndex = -1;
         newSpriteIndex = 0;
 
-        moveToOfficeCountdown = Random.Range(10,20);
+        moveToOfficeCountdown = Random.Range(moveMin,moveMax);
 
         startingPosition = new Vector3(-8.33f,6,0);
         targetPosition = new Vector3(-8.33f,-2.5f,0);
@@ -68,7 +70,7 @@ public class Tenant : MonoBehaviour
         if(transform.position.y > startingPosition.y){
             transform.position = new Vector2(transform.position.x, startingPosition.y);
             isLeavingOffice = false;
-            moveToOfficeCountdown = Random.Range(10,20);
+            moveToOfficeCountdown = Random.Range(moveMin,moveMax);
         }
     }
 
