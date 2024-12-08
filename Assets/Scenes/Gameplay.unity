@@ -318,6 +318,7 @@ MonoBehaviour:
   maxRentMoney: 20
   moneyResult: 0
   coffeeCost: 3
+  recyclePayment: 2
   moneyResultColor: {r: 0, g: 0, b: 0, a: 0}
   hasCollectedRent: 0
   fadeDuration: 2
@@ -1012,6 +1013,8 @@ MonoBehaviour:
   hasDrinkenCoffee: 0
   coffeeTimer: 0
   audioSource: {fileID: 420417839}
+  slurpClip: {fileID: 8300000, guid: 7ae54a08d6b928f47ac16dd97dea0554, type: 3}
+  particles: {fileID: 724806728}
   speed: 3.5
 --- !u!70 &420417837
 CapsuleCollider2D:
@@ -1085,7 +1088,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 909018356289657335, guid: d7b9ab87500e70f44be4b4f24f876180, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7ae54a08d6b928f47ac16dd97dea0554, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 1
@@ -1378,7 +1381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trash: {fileID: -5363749127022186872, guid: f4a6afab680f9da46a5309234abccc65, type: 3}
   radius: 0.6
-  percentChance: 40
+  percentChance: 25
 --- !u!4 &475600389
 Transform:
   m_ObjectHideFlags: 0
@@ -1529,7 +1532,7 @@ MonoBehaviour:
   currSpriteIndex: 0
   newSpriteIndex: 0
   moveMin: 8
-  moveMax: 15
+  moveMax: 13
   moveToOfficeCountdown: 0
 --- !u!212 &649230331
 SpriteRenderer:
@@ -1610,7 +1613,7 @@ GameObject:
   - component: {fileID: 724806731}
   - component: {fileID: 724806730}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1713,16 +1716,16 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724806728}
   serializedVersion: 8
-  lengthInSec: 50
-  simulationSpeed: 0.7
+  lengthInSec: 200
+  simulationSpeed: 0.8
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 1
-  playOnAwake: 0
+  prewarm: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -1841,7 +1844,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1959,7 +1962,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.7
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2224,7 +2227,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7853981
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2283,7 +2286,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -0.3
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2423,7 +2426,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.5
       mode: 0
       spread: 0
       speed:
@@ -2542,7 +2545,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 25
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2980,17 +2983,17 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0, b: 0, a: 0.47058824}
+        key0: {r: 0.7132075, g: 0.3713807, b: 0.079394735, a: 1}
         key1: {r: 0.98812354, g: 1, b: 0.1490565, a: 1}
-        key2: {r: 0.028301716, g: 0.22365035, b: 1, a: 0.49803922}
+        key2: {r: 0.6226415, g: 0.09750796, b: 0.27112952, a: 0.3529412}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
-        ctime0: 0
-        ctime1: 32922
-        ctime2: 65535
+        ctime0: 15343
+        ctime1: 29221
+        ctime2: 44795
         ctime3: 0
         ctime4: 0
         ctime5: 0
@@ -2998,7 +3001,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 33076
-        atime2: 65535
+        atime2: 57902
         atime3: 0
         atime4: 0
         atime5: 0
@@ -6464,6 +6467,7 @@ MonoBehaviour:
   maxRentMoney: 20
   moneyResult: 0
   coffeeCost: 3
+  recyclePayment: 2
   moneyResultColor: {r: 0, g: 0, b: 0, a: 0}
   hasCollectedRent: 0
   fadeDuration: 2
@@ -7001,6 +7005,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cc946b0a14a803848b5db06c1c613fab, type: 3}
   - {fileID: 8300000, guid: 213212eaaa1fb3a4d86499feddc8e08d, type: 3}
   cashRegisterAudioClip: {fileID: 8300000, guid: 428efe2c1322d6d4985a34c9bab6a8f7, type: 3}
+  powerUpClip: {fileID: 8300000, guid: 7067b2bbe720b3a4bbb5a3dc9d998d58, type: 3}
+  powerDownClip: {fileID: 8300000, guid: 414b17527d98df641a2cbfe9a5db3f39, type: 3}
+  recycleTrashClip: {fileID: 8300000, guid: d29f0b7bfc5430a4f92c9925c0178b8c, type: 3}
   effectSource: {fileID: 1293131493}
 --- !u!4 &1293131492
 Transform:
@@ -7304,6 +7311,7 @@ MonoBehaviour:
   maxRentMoney: 20
   moneyResult: 0
   coffeeCost: 3
+  recyclePayment: 2
   moneyResultColor: {r: 0, g: 0, b: 0, a: 0}
   hasCollectedRent: 0
   fadeDuration: 2

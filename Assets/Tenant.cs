@@ -14,8 +14,8 @@ public class Tenant : MonoBehaviour
     public Sprite[] spriteArray;
     public int currSpriteIndex;
     public int newSpriteIndex;
-    public int moveMin = 8;
-    public int moveMax = 15;
+    public int moveMin;
+    public int moveMax;
     
 
     public int moveToOfficeCountdown;
@@ -23,6 +23,8 @@ public class Tenant : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        moveMin = 8;
+        moveMax = 12;
         //subscribe to Player CollectRent event
         FindObjectOfType<Player>().collectRentEvent += RentCollected;
 

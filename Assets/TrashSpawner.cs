@@ -7,8 +7,8 @@ public class TrashSpawner : MonoBehaviour
 {
 
     public Trash trash;
-    public float radius = 1;
-    public int percentChance = 10;
+    public float radius;
+    public int percentChance;
 
     //an array of Vector2D locations to move to 
     List<Vector2> locationsList = new List<Vector2>(); 
@@ -16,6 +16,8 @@ public class TrashSpawner : MonoBehaviour
 
     void Start()
     {
+        radius = 0.6f;
+        percentChance = 30;
         PopulateLocationsList();
         
         //subscribe to oneSecondTrigger event
@@ -43,10 +45,8 @@ public class TrashSpawner : MonoBehaviour
         transform.localPosition = locationsList[randLoc];
 
         //percentage chance of a trash spawning
-        int rand = Random.Range(0,100);
         //Debug.Log("Random Trash Spawn Number: " + rand);
-        
-        if(rand <= percentChance){
+        if(Random.Range(1,100) <= percentChance){
             Vector3 randomPos = Random.insideUnitCircle * radius;
             Instantiate(trash, transform.position + randomPos, Quaternion.identity);
         }

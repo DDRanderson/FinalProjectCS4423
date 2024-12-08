@@ -12,7 +12,7 @@ public class MoneyManager : MonoBehaviour
     [SerializeField] TMP_Text moneyText;
     [SerializeField] TMP_Text moneyResultText;
     
-
+    
 
     [Header("Money Values")]
     public int currentMoney = 300;
@@ -20,6 +20,7 @@ public class MoneyManager : MonoBehaviour
     public int maxRentMoney = 20;
     public int moneyResult = 0;
     public int coffeeCost = 3;
+    public int recyclePayment = 2;
     public Color moneyResultColor;
     public bool hasCollectedRent = false;
     [SerializeField] float fadeDuration = 2f;
@@ -43,6 +44,7 @@ public class MoneyManager : MonoBehaviour
         FindObjectOfType<TimeManager>().endOfDayEvent += EndOfDay;
         FindObjectOfType<Player>().collectRentEvent += CollectedRent;
         FindObjectOfType<Player>().drinkCoffeeEvent += PayForCoffee;
+        FindObjectOfType<Player>().recycleTrashEvent += RecycleTrash;
     }
 
     //void Update(){
@@ -106,6 +108,14 @@ public class MoneyManager : MonoBehaviour
         moneyResultText.text = "-$" + coffeeCost;
         moneyResultText.color = moneyResultColor;
         currentMoney -= coffeeCost;
+        moneyText.text = "$" + currentMoney;
+    }
+
+    void RecycleTrash(){
+        moneyResultColor = new Color(0,1,0,1);
+        moneyResultText.text = "+$" + recyclePayment;
+        moneyResultText.color = moneyResultColor;
+        currentMoney += recyclePayment;
         moneyText.text = "$" + currentMoney;
     }
 

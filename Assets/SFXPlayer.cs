@@ -6,6 +6,9 @@ public class SFXPlayer : MonoBehaviour
 {
     public AudioClip[] trashAudioClipArray;
     public AudioClip cashRegisterAudioClip;
+    public AudioClip powerUpClip;
+    public AudioClip powerDownClip;
+    public AudioClip recycleTrashClip;
     public AudioSource effectSource;
     private int trashClipIndex;
 
@@ -15,7 +18,11 @@ public class SFXPlayer : MonoBehaviour
     void Start()
     {
         FindObjectOfType<Player>().collectTrashEvent += PlayRandomTrashSound;
+        FindObjectOfType<Player>().recycleTrashEvent += PlayRecycleTrashSound;
         FindObjectOfType<Player>().collectRentEvent += PlayCashRegisterSound;
+        FindObjectOfType<Player>().drinkCoffeeEvent += PlayPowerUpSound;
+        FindObjectOfType<Player>().coffeeEndEvent += PlayPowerDownSound;
+
         trashClipIndex = Random.Range(0,trashAudioClipArray.Length-1);
     }
 
@@ -37,5 +44,17 @@ public class SFXPlayer : MonoBehaviour
 
     void PlayCashRegisterSound(){
         effectSource.PlayOneShot(cashRegisterAudioClip);
+    }
+
+    void PlayPowerUpSound(){
+        effectSource.PlayOneShot(powerUpClip);
+    }
+
+    void PlayPowerDownSound(){
+        effectSource.PlayOneShot(powerDownClip);
+    }
+
+    void PlayRecycleTrashSound(){
+        effectSource.PlayOneShot(recycleTrashClip);
     }
 }

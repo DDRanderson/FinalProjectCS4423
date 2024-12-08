@@ -9,13 +9,17 @@ public class Player : MonoBehaviour
     public delegate void PlayerEvents();
     public event PlayerEvents collectRentEvent;
     public event PlayerEvents collectTrashEvent;
+    public event PlayerEvents recycleTrashEvent;
     public event PlayerEvents drinkCoffeeEvent;
+    public event PlayerEvents coffeeEndEvent;
 	
 	public bool isBehindDesk = false;
     public bool isByCoffeeMachine = false;
     public bool hasDrinkenCoffee = false;
     public int coffeeTimer = 0;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip slurpClip;
+    [SerializeField] GameObject particles;
 
     [Header("Movement")]
     [SerializeField] float speed = 3.5f;
@@ -25,6 +29,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         FindObjectOfType<TimeManager>().oneSecondEvent += OneSecondListenEvent;
+        particles.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,8 +53,16 @@ public class Player : MonoBehaviour
         collectTrashEvent?.Invoke();
     }
 
+    public void RecycleTrashTrigger(){
+        recycleTrashEvent?.Invoke();
+    }
+
     public void DrinkCoffeeTrigger(){
         drinkCoffeeEvent?.Invoke();
+    }
+
+    public void CoffeeEndTrigger(){
+        coffeeEndEvent?.Invoke();
     }
 
     void OnTriggerEnter2D(Collider2D collision){
@@ -77,18 +90,23 @@ public class Player : MonoBehaviour
             if(Input.GetKey(KeyCode.T)){
                 //TrashDestroyedTrigger();
                 Destroy(collision.gameObject);
-                CollectTrashTrigger();
+                
+                if (Random.Range(1,100) > 20){
+                    CollectTrashTrigger();
+                } else {
+                    RecycleTrashTrigger();
+                }
             }
         }
-
     }
 
     public void DrinkCoffee(){
         DrinkCoffeeTrigger();
-        audioSource.Play();
+        audioSource.PlayOneShot(slurpClip);
         hasDrinkenCoffee = true;
-        speed = 5f;
+        speed = 5.8f;
         coffeeTimer = 20;
+        particles.SetActive(true);
     }
 
     void OneSecondListenEvent(){
@@ -97,9 +115,13 @@ public class Player : MonoBehaviour
         }
 
         if(coffeeTimer <= 0){
+            if (hasDrinkenCoffee){
+                CoffeeEndTrigger();
+            }
             hasDrinkenCoffee = false;
             coffeeTimer = 0;
             speed = 3.5f;
+            particles.SetActive(false);
         }
     }
 }
