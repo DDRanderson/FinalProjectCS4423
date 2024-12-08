@@ -78,6 +78,11 @@ public class MoneyManager : MonoBehaviour
             moneyResultText.color = moneyResultColor;
             //hasCollectedRent = true;
             currentMoney += moneyResult;
+        } else {
+            moneyResult = 0;
+            moneyResultColor = new Color(1,1,1,1);
+            moneyResultText.color = moneyResultColor;
+            moneyResultText.text = "$" + moneyResult;
         }
 
         try{

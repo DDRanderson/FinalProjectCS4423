@@ -98,19 +98,20 @@ public class Tenant : MonoBehaviour
 
     void ChangeSprite(){
         //randomly changes to a new tenant sprite, checks to ensure non-consecutive tenant sprites are chosen
-        newSpriteIndex = Random.Range(0,spriteArray.Length-1);
+        newSpriteIndex = Random.Range(0,spriteArray.Length);
         if (currSpriteIndex == -1){
             currSpriteIndex = newSpriteIndex;
             spriteRenderer.sprite = spriteArray[newSpriteIndex]; 
         }
         else if (newSpriteIndex == currSpriteIndex){
             while (newSpriteIndex == currSpriteIndex){
-                newSpriteIndex = Random.Range(0,spriteArray.Length-1);
+                newSpriteIndex = Random.Range(0,spriteArray.Length);
             }
             currSpriteIndex = newSpriteIndex;
             spriteRenderer.sprite = spriteArray[newSpriteIndex];
         }
         else {
+            currSpriteIndex = newSpriteIndex;
             spriteRenderer.sprite = spriteArray[newSpriteIndex];
         }
     }
