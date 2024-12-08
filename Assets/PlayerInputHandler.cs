@@ -31,7 +31,10 @@ public class PlayerInputHandler : MonoBehaviour
 		}
 
         if(Input.GetKeyDown(KeyCode.C)){
-            player.DrinkCoffee();
+            if (player.isByCoffeeMachine){
+                player.DrinkCoffee();
+            }
+            
         }
 
         if(Input.GetKeyDown(KeyCode.Escape)){

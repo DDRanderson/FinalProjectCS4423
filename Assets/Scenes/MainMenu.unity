@@ -630,8 +630,8 @@ MonoBehaviour:
     Pick up Trash as
     it appears around the facility
 
-    You must be standing on Trash to be able
-    to collect it
+    Trash has a chance of being recycled for
+    extra money
 
     More Rent is collected when there is less Trash
 
@@ -644,7 +644,10 @@ MonoBehaviour:
 
     You can spend $3 to buy/drink coffee
     in front of the Coffee vending machine in the corner of the office. This will
-    temporarily increase your movement speed'
+    temporarily increase your movement speed
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2624,12 +2627,12 @@ MonoBehaviour:
   m_text: 'Controls:
 
 
-    Move - Arrow Keys
+    Arrow Keys - Move
 
-    Collect Rent - R
+    R - Collect Rent
 
-    Pick up Trash
-    - T
+    T - Pick
+    Up Trash
 
     C - Drink Coffee
 
