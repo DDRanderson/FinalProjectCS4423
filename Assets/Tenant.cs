@@ -29,6 +29,7 @@ public class Tenant : MonoBehaviour
         FindObjectOfType<Player>().collectRentEvent += RentCollected;
 
         FindObjectOfType<TimeManager>().oneSecondEvent += OneSecondListenEvent;
+        FindObjectOfType<TimeManager>().endOfDayEvent += EndOfDayEvent;
 
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         currSpriteIndex = -1;
@@ -106,13 +107,19 @@ public class Tenant : MonoBehaviour
             while (newSpriteIndex == currSpriteIndex){
                 newSpriteIndex = Random.Range(0,spriteArray.Length-1);
             }
-            spriteRenderer.sprite = spriteArray[newSpriteIndex];
             currSpriteIndex = newSpriteIndex;
+            spriteRenderer.sprite = spriteArray[newSpriteIndex];
         }
         else {
             spriteRenderer.sprite = spriteArray[newSpriteIndex];
         }
+    }
 
-        
+    void EndOfDayEvent(){
+        transform.position = startingPosition;
+        isMovingToOffice = false;
+        isLeavingOffice = false;
+        isInOffice = false;
+        moveToOfficeCountdown = Random.Range(moveMin,moveMax);
     }
 }
